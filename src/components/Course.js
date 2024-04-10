@@ -8,14 +8,12 @@ function Course(props) {
     //   <h4> ID: {course.id}</h4>
     //   <h4> Title: {course.title}</h4>
     //   </div>
-    <div class="card m-5">
-      <div class="card-header">{course.id}</div>
-      <div class="card-body">
-        <h5 class="card-title">{course.title}</h5>
-        <p class="card-text">
-          senior software design project course aka capstone
-        </p>
-        <a href="#" class="btn btn-danger">
+    <div className="card m-5">
+      <div className="card-header">{course.courseid}</div>
+      <div className="card-body">
+        <h5 className="card-title">{course.coursename}</h5>
+        <p className="card-text">{course.coursedesc}</p>
+        <a href="#" className="btn btn-danger">
           Delete
         </a>
       </div>
