@@ -33,11 +33,11 @@ function CourseForm({ setCourses, setMsg }) {
       coursedesc,
       enrollnum,
     };
-    postData("http://localhost:4000/api/course", new_course).then(() => {
+    postData("http://localhost:4000/api/course", new_course).then((data) => {
       // Note: setCourses is not needed, as we made useEffect for course dependent
       // on 'msg', the courses will be fetched and reredndered anytime 'msg' changes
       //setCourses((oldCourses) => [...oldCourses, new_course]);
-      setMsg("Course created succesfully!");
+      setMsg(data.msg);
     });
   }
 
