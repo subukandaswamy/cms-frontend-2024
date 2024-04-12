@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 
-function CourseForm() {
+function CourseForm({ setCourses, setMsg }) {
   const [courseid, setCourseid] = useState("");
   const [coursename, setCoursename] = useState("");
   const [semester, setSemester] = useState("");
   const [coursedesc, setCoursedesc] = useState("");
-  const [enrollnum, setEnrollnum] = useState(0);
+  const [enrollnum, setEnrollnum] = useState(50);
 
   async function postData(url = "", data = {}) {
     // Default options are marked with *
@@ -26,12 +26,18 @@ function CourseForm() {
   function handleSubmit(event) {
     event.preventDefault();
     console.log("courseid: ", courseid);
-    postData("http://localhost:4000/api/course", {
+    const new_course = {
       courseid,
       coursename,
       semester,
       coursedesc,
       enrollnum,
+    };
+    postData("http://localhost:4000/api/course", new_course).then(() => {
+      // Note: setCourses is not needed, as we made useEffect for course dependent
+      // on 'msg', the courses will be fetched and reredndered anytime 'msg' changes
+      //setCourses((oldCourses) => [...oldCourses, new_course]);
+      setMsg("Course created succesfully!");
     });
   }
 
@@ -102,7 +108,7 @@ function CourseForm() {
             name="enrollnum"
             min="50"
             max="100"
-            value="50"
+            value={enrollnum}
             step="10"
             onChange={(e) => {
               setEnrollnum(e.target.value);
@@ -113,10 +119,10 @@ function CourseForm() {
         <div className="form-group">
           <input type="submit" value="Add Course" className="btn btn-primary" />
         </div>
-        <div>
+        {/* <div>
           {courseid}
           {coursename}
-        </div>
+        </div> */}
       </form>
     </div>
   );

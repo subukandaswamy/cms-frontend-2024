@@ -1,7 +1,8 @@
 import React, { useState } from "react";
+import DeleteModal from "./DeleteModal";
 
 function Course(props) {
-  const { course, setCourses } = props;
+  const { course, setCourses, setMsg } = props;
 
   return (
     // <div>
@@ -13,9 +14,10 @@ function Course(props) {
       <div className="card-body">
         <h5 className="card-title">{course.coursename}</h5>
         <p className="card-text">{course.coursedesc}</p>
-        <a href="#" className="btn btn-danger">
+        {/* <a href="#" className="btn btn-danger">
           Delete
-        </a>
+        </a> */}
+        <DeleteModal course={course} setMsg={setMsg} />
       </div>
     </div>
   );
