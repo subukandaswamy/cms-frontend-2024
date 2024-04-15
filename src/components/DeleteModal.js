@@ -1,12 +1,15 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
+import { MessageContext } from "../App";
 
-function DeleteModal({ course, setMsg }) {
+function DeleteModal({ course }) {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  const { setMsg, sample } = useContext(MessageContext);
 
   const deleteCourse = () => {
     fetch("http://localhost:4000/api/course/" + course.courseid, {
